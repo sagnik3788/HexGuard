@@ -2,6 +2,28 @@
 
 HexGuard is a dynamic binary analysis tool built with Go and Python, leveraging x64dbg for automated malware detection. It helps security professionals and developers analyze binaries for malicious behavior by monitoring system calls, API interactions, and generating comprehensive reports.
 
+## Architecture
+
+```mermaid
+graph TD
+    User[User] -->|Uploads binary| UI[Web Interface]
+    UI -->|Stores file| S3[AWS S3]
+    S3 -->|Notifies| RMQ[RabbitMQ]
+    RMQ -->|Queues job| K8S[Kubernetes Cluster]
+    K8S -->|Runs analysis| X64DBG[x64dbg in Windows Containers]
+    X64DBG -->|Caches results| Redis[Redis Cache]
+    K8S -->|Returns results| UI
+    UI -->|Displays results| User
+
+    Monitor[Monitoring & Logging] -.->|Tracks| K8S
+    Monitor -.->|Tracks| RMQ
+    Monitor -.->|Tracks| Redis
+
+    classDef highlight fill:#ff9800,stroke:#333,stroke-width:2px;
+    class X64DBG highlight
+```
+
+
 ## Features
 
 - **Dynamic Analysis**: Automatically analyzes binaries to detect suspicious behavior patterns.
@@ -9,30 +31,6 @@ HexGuard is a dynamic binary analysis tool built with Go and Python, leveraging 
 - **Report Generation**: Generates detailed reports summarizing analysis findings.
 - **Queue Management**: Uses RabbitMQ for managing analysis tasks efficiently.
 - **Caching**: Implements Redis for caching frequently accessed data.
-
-## Project Structure
-
-```
-HexGuard/
-├── core/
-│   ├── analysis/    # Analysis logic
-│   ├── reporting/   # Reporting functionality
-│   └── x64dbg/      # x64dbg interaction scripts
-├── saas/
-│   ├── api/         # API endpoints
-│   ├── db/          # Database setup (Appwrite)
-│   ├── queue/       # Job queue management (RabbitMQ)
-│   ├── cache/       # Caching (Redis)
-│   └── web/         # Web frontend
-├── cli/             # Command-line interface
-├── docs/            # Documentation
-├── scripts/         # Setup and automation scripts
-├── tests/           # Unit and integration tests
-├── Dockerfile       # Docker configuration
-├── docker-compose.yaml  # Local development setup
-├── Makefile         # Build and testing commands
-└── README.md        # Project overview
-```
 
 ## Requirements
 

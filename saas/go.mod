@@ -1,8 +1,11 @@
 module hexguard
 
-go 1.22.7
+go 1.22.5
+
+toolchain go1.22.7
 
 require (
+	github.com/appwrite/sdk-for-go v0.2.0 // indirect
 	github.com/bytedance/sonic v1.11.6 // indirect
 	github.com/bytedance/sonic/loader v0.1.1 // indirect
 	github.com/cloudwego/base64x v0.1.4 // indirect

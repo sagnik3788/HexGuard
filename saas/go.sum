@@ -1,3 +1,5 @@
+github.com/appwrite/sdk-for-go v0.2.0 h1:37rQFsq3rELRxYu/YHAatVLLDYfxAAM5ya2tvGurBKE=
+github.com/appwrite/sdk-for-go v0.2.0/go.mod h1:aFiOAbfOzGS3811eMCt3T9WDBvjvPVAfOjw10Vghi4E=
 github.com/bytedance/sonic v1.11.6 h1:oUp34TzMlL+OY1OUWxHqsdkgC/Zfc85zGqw9siXjrc0=
 github.com/bytedance/sonic v1.11.6/go.mod h1:LysEHSvpvDySVdC2f87zGWf6CIKJcAvqab1ZaiQtds4=
 github.com/bytedance/sonic v1.12.3 h1:W2MGa7RCU1QTeYRTPE3+88mVC0yXmsRQRChiyVocVjU=

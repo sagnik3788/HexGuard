@@ -19,7 +19,7 @@ graph TD
     Monitor -.->|Tracks| RMQ
     Monitor -.->|Tracks| Redis
 
-    classDef highlight fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef highlight fill:#ff9800,stroke:#333,stroke-width:2px;
     class X64DBG highlight
 ```
 

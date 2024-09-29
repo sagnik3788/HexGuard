@@ -4,7 +4,7 @@ HexGuard is a dynamic binary analysis tool built with Go and Python, leveraging 
 
 ## Architecture
 
-```
+```mermaid
 graph TD
     User[User] -->|Uploads binary| UI[Web Interface]
     UI -->|Stores file| S3[AWS S3]

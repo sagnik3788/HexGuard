@@ -32,30 +32,6 @@ graph TD
 - **Queue Management**: Uses RabbitMQ for managing analysis tasks efficiently.
 - **Caching**: Implements Redis for caching frequently accessed data.
 
-## Project Structure
-
-```
-HexGuard/
-├── core/
-│   ├── analysis/    # Analysis logic
-│   ├── reporting/   # Reporting functionality
-│   └── x64dbg/      # x64dbg interaction scripts
-├── saas/
-│   ├── api/         # API endpoints
-│   ├── db/          # Database setup (Appwrite)
-│   ├── queue/       # Job queue management (RabbitMQ)
-│   ├── cache/       # Caching (Redis)
-│   └── web/         # Web frontend
-├── cli/             # Command-line interface
-├── docs/            # Documentation
-├── scripts/         # Setup and automation scripts
-├── tests/           # Unit and integration tests
-├── Dockerfile       # Docker configuration
-├── docker-compose.yaml  # Local development setup
-├── Makefile         # Build and testing commands
-└── README.md        # Project overview
-```
-
 ## Requirements
 
 - Go (version 1.16+)

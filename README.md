@@ -4,89 +4,23 @@ HexGuard is a dynamic binary analysis tool built with Go and Python, leveraging 
 
 ## Architecture
 
-```mermaid
+```
 graph TD
-    subgraph "Client Layer" 
-        User[fa:fa-user User]
-        UI[fa:fa-desktop Web Interface]
-    end
-
-    subgraph "Storage Layer"
-        S3[fa:fa-database AWS S3]
-    end
-
-    subgraph "Queue System"
-        RMQ[fa:fa-tasks RabbitMQ]
-    end
-
-    subgraph "Load Balancer"
-        NGINX[fa:fa-balance-scale NGINX]
-    end
-
-    subgraph "Kubernetes Cluster"
-        K8S[fa:fa-cubes Kubernetes]
-        subgraph "Worker Nodes"
-            W1[fa:fa-window-maximize Windows Container 1]
-            W2[fa:fa-window-maximize Windows Container 2]
-            W3[fa:fa-window-maximize Windows Container 3]
-            W4[fa:fa-window-maximize Windows Container ...]
-        end
-    end
-
-    subgraph "Analysis Components"
-        X64DBG1[fa:fa-bug x64dbg]
-        X64DBG2[fa:fa-bug x64dbg]
-        X64DBG3[fa:fa-bug x64dbg]
-        PY1[fa:fa-code Python Scripts]
-        PY2[fa:fa-code Python Scripts]
-        PY3[fa:fa-code Python Scripts]
-    end
-
-    subgraph "Caching Layer"
-        Redis[fa:fa-bolt Redis Cache]
-    end
-
-    subgraph "Monitoring and Logging"
-        Prometheus[fa:fa-chart-line Prometheus]
-        Grafana[fa:fa-tachometer-alt Grafana]
-        ELK[fa:fa-search ELK Stack]
-    end
-
-    User -->|Uploads binary| UI
-    UI -->|Sends file| S3
-    S3 -->|Notifies| RMQ
-    RMQ -->|Queues analysis job| K8S
-    K8S -->|Assigns job| W1
-    K8S -->|Assigns job| W2
-    K8S -->|Assigns job| W3
-    K8S -->|Assigns job| W4
-    W1 -->|Runs| X64DBG1
-    W2 -->|Runs| X64DBG2
-    W3 -->|Runs| X64DBG3
-    X64DBG1 -.->|Automated by| PY1
-    X64DBG2 -.->|Automated by| PY2
-    X64DBG3 -.->|Automated by| PY3
-    W1 <-->|Caches results| Redis
-    W2 <-->|Caches results| Redis
-    W3 <-->|Caches results| Redis
-    W4 <-->|Caches results| Redis
-    NGINX -->|Distributes requests| K8S
-    K8S -->|Returns results| NGINX
-    NGINX -->|Sends response| UI
+    User[User] -->|Uploads binary| UI[Web Interface]
+    UI -->|Stores file| S3[AWS S3]
+    S3 -->|Notifies| RMQ[RabbitMQ]
+    RMQ -->|Queues job| K8S[Kubernetes Cluster]
+    K8S -->|Runs analysis| X64DBG[x64dbg in Windows Containers]
+    X64DBG -->|Caches results| Redis[Redis Cache]
+    K8S -->|Returns results| UI
     UI -->|Displays results| User
 
-    Prometheus -->|Monitors| K8S
-    Prometheus -->|Monitors| RMQ
-    Prometheus -->|Monitors| Redis
-    Grafana -->|Visualizes| Prometheus
-    K8S -.->|Logs| ELK
-    RMQ -.->|Logs| ELK
-    Redis -.->|Logs| ELK
+    Monitor[Monitoring & Logging] -.->|Tracks| K8S
+    Monitor -.->|Tracks| RMQ
+    Monitor -.->|Tracks| Redis
 
     classDef highlight fill:#f9f,stroke:#333,stroke-width:2px;
-    class X64DBG1,X64DBG2,X64DBG3 highlight
-    classDef emphasis fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
-    class K8S,Redis emphasis
+    class X64DBG highlight
 ```
 
 

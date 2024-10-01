@@ -1,6 +1,6 @@
 # HexGuard
 
-HexGuard is a dynamic binary analysis tool built with Go and Python, leveraging x64dbg for automated malware detection. It helps security professionals and developers analyze binaries for malicious behavior by monitoring system calls, API interactions, and generating comprehensive reports.
+HexGuard is a dynamic Malware analysis tool built with Go and Python, leveraging x64dbg for automated malware detection. It helps security professionals and developers analyze binaries for malicious behavior by monitoring system calls, API interactions, and generating comprehensive reports.
 
 ## Architecture
 

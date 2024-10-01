@@ -23,9 +23,16 @@ func UploadHandler(c *gin.Context) {
 	}
 	defer file.Close()
 
+	if err := ValidateBinaryFile(header); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
 	fileName := fmt.Sprintf("%d%s", time.Now().Unix(), header.Filename)
 
 	bucketName := os.Getenv("BucketName")
+
+	fmt.Println(bucketName)
 
 	if bucketName == "" {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Bucket name not set"})

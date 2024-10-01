@@ -1,22 +1,19 @@
 package main
 
-import(
+import (
+	"hexguard/api"
+	"hexguard/db"
 	"log"
 
-    "github.com/gin-gonic/gin"
-	"hexguard/db"
+	"github.com/gin-gonic/gin"
 )
 
 func main(){
-
 	db.ConnectToDatabase()
 	
-
 	router := gin.Default()
-	router.GET("/", func(c *gin.Context) {
-		c.Header("Content-Type", "text/html")
-		c.String(200, "<h1>HexGuard Go!</h1>")
-	})
+	
+	api.SetupRoutes(router)
 
 	if err := router.Run(":3000"); err != nil {
 		log.Fatal("failed to run server")

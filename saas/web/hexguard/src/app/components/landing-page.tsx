@@ -31,7 +31,7 @@ export default function LandingPage() {
           <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-green-500">
           HexGuard: Secure AF
           </h1>
-          <p className="text-xl md:text-2xl mb-12 text-gray-400">Advanced malware analysis for the Security rResearchers</p>
+          <p className="text-xl md:text-2xl mb-12 text-gray-400">Advanced malware analysis for the Security Researchers</p>
           <Button size="lg" className="text-lg px-8 py-6 bg-gradient-to-r from-cyan-500 to-green-600 hover:from-cyan-600 hover:to-green-700 transition-all duration-300 transform hover:scale-105">
             Get Started
             <ChevronRight className="ml-2 h-5 w-5" />

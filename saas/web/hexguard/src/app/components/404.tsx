@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Button } from "@/components/ui/button"
-import { Shield, Home, Search, HelpCircle, ArrowLeft } from "lucide-react"
+import { Shield, Home, HelpCircle } from "lucide-react"
 import Link from "next/link"
 
 export default function ErrorPage() {

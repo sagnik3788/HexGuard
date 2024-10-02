@@ -133,67 +133,68 @@ export default function LandingPage() {
       </main>
 
       <footer className="bg-gray-800 bg-opacity-70 py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Company</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link className="text-gray-400 hover:text-cyan-400 transition-colors" href="/not-found">
-                    About Us
-                  </Link>
-                </li>
-                <li>
-                  <Link className="text-gray-400 hover:text-cyan-400 transition-colors" href="/not-found">
-                    Careers
-                  </Link>
-                </li>
-                <li>
-                  <Link className="text-gray-400 hover:text-cyan-400 transition-colors" href="/not-found">
-                    Contact
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Resources</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link className="text-gray-400 hover:text-cyan-400 transition-colors" href="/not-found">
-                    Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link className="text-gray-400 hover:text-cyan-400 transition-colors" href="/not-found">
-                    Documentation
-                  </Link>
-                </li>
-                <li>
-                  <Link className="text-gray-400 hover:text-cyan-400 transition-colors" href="/not-found">
-                    Support
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Legal</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link className="text-gray-400 hover:text-cyan-400 transition-colors" href="/not-found">
-                    Privacy Policy
-                  </Link>
-                </li>
-                <li>
-                  <Link className="text-gray-400 hover:text-cyan-400 transition-colors" href="/not-found">
-                    Terms of Service
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <p className="text-center mt-12 text-gray-400">© 2024 HexGuard. All Rights Reserved.</p>
-        </div>
-      </footer>
+  <div className="container mx-auto px-4 flex justify-end">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
+      <div className="md:col-span-1">
+        <h3 className="text-lg font-semibold mb-4">Company</h3>
+        <ul className="space-y-2">
+          <li>
+            <Link className="text-gray-400 hover:text-cyan-400 transition-colors" href="/not-found">
+              About Us
+            </Link>
+          </li>
+          <li>
+            <Link className="text-gray-400 hover:text-cyan-400 transition-colors" href="/not-found">
+              Careers
+            </Link>
+          </li>
+          <li>
+            <Link className="text-gray-400 hover:text-cyan-400 transition-colors" href="/not-found">
+              Contact
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <div className="md:col-span-1">
+        <h3 className="text-lg font-semibold mb-4">Resources</h3>
+        <ul className="space-y-2">
+          <li>
+            <Link className="text-gray-400 hover:text-cyan-400 transition-colors" href="/not-found">
+              Blog
+            </Link>
+          </li>
+          <li>
+            <Link className="text-gray-400 hover:text-cyan-400 transition-colors" href="/not-found">
+              Documentation
+            </Link>
+          </li>
+          <li>
+            <Link className="text-gray-400 hover:text-cyan-400 transition-colors" href="/not-found">
+              Support
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <div className="md:col-span-1">
+        <h3 className="text-lg font-semibold mb-4">Legal</h3>
+        <ul className="space-y-2">
+          <li>
+            <Link className="text-gray-400 hover:text-cyan-400 transition-colors" href="/not-found">
+              Privacy Policy
+            </Link>
+          </li>
+          <li>
+            <Link className="text-gray-400 hover:text-cyan-400 transition-colors" href="/not-found">
+              Terms of Service
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <p className="text-center mt-12 text-gray-400">© 2024 HexGuard. All Rights Reserved.</p>
+  </div>
+</footer>
+
     </div>
   )
 }
@@ -230,4 +231,4 @@ function ExploreCard({ icon, title, description, href, onClick }: ExploreCardPro
       <p className="text-gray-400 mt-2">{description}</p>
     </Link>
   )
-}
+}  

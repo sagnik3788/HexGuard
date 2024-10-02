@@ -1,14 +1,16 @@
-import { motion } from 'framer-motion'
-import { Button } from "@/components/ui/button"
-import { Shield, Home, HelpCircle } from "lucide-react"
-import Link from "next/link"
+"use client";
+
+import { motion } from 'framer-motion';
+import { Button } from "@/components/ui/button";
+import { Shield, Home, HelpCircle } from "lucide-react";
+import Link from "next/link";
 
 export default function ErrorPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-blue-900 to-gray-900 text-white flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-gray-800 via-gray-900 to-black text-white flex flex-col">
       <header className="container mx-auto px-4 py-6 flex items-center justify-between">
         <Link href="/" className="flex items-center space-x-2">
-          <Shield className="h-8 w-8 text-blue-500" />
+          <Shield className="h-8 w-8 text-yellow-400" />
           <span className="text-2xl font-bold">HexGuard</span>
         </Link>
       </header>
@@ -40,12 +42,12 @@ export default function ErrorPage() {
           className="grid gap-4 md:grid-cols-2 max-w-md w-full"
         >
           <Link href="/" passHref>
-            <Button className="w-full">
+            <Button className="w-full bg-yellow-500 hover:bg-yellow-400 text-black">
               <Home className="mr-2 h-4 w-4" /> Return Home
             </Button>
           </Link>
           <Link href="/contact" passHref>
-            <Button variant="outline" className="w-full">
+            <Button variant="outline" className="w-full border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black">
               <HelpCircle className="mr-2 h-4 w-4" /> Contact Support
             </Button>
           </Link>
@@ -59,19 +61,29 @@ export default function ErrorPage() {
         >
           <p className="text-lg mb-4">Or try one of these helpful links:</p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/features" className="text-blue-400 hover:text-blue-300 transition-colors">
+            <Link href="/features" className="text-yellow-500 hover:text-yellow-400 transition-colors">
               Features
             </Link>
-            <Link href="/pricing" className="text-blue-400 hover:text-blue-300 transition-colors">
+            <Link href="/pricing" className="text-yellow-500 hover:text-yellow-400 transition-colors">
               Pricing
             </Link>
-            <Link href="/about" className="text-blue-400 hover:text-blue-300 transition-colors">
+            <Link href="/about" className="text-yellow-500 hover:text-yellow-400 transition-colors">
               About Us
             </Link>
-            <Link href="/faq" className="text-blue-400 hover:text-blue-300 transition-colors">
+            <Link href="/faq" className="text-yellow-500 hover:text-yellow-400 transition-colors">
               FAQ
             </Link>
           </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.8 }}
+          className="mt-12"
+        >
+          <h2 className="text-3xl font-bold">This page is under construction</h2>
+          <p className="text-lg mb-4">We are working hard to bring you this feature!</p>
         </motion.div>
       </main>
 
@@ -94,5 +106,5 @@ export default function ErrorPage() {
         </div>
       </footer>
     </div>
-  )
+  );
 }

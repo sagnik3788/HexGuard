@@ -16,7 +16,7 @@ export default function LandingPage() {
           </Link>
 
           <Link className="hover:text-cyan-400 transition-colors" href="not-found">
-            About Us
+            Pricing
           </Link>
           <Link className="hover:text-cyan-400 transition-colors" href="not-found">
             Contact

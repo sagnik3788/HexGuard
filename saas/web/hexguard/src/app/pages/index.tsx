@@ -15,7 +15,7 @@ export default function LandingPage() {
           Features
           </Link>
 
-          <Link className="hover:text-cyan-400 transition-colors" href="not-found">
+          <Link className="hover:text-cyan-400 transition-colors" href="pricing">
             Pricing
           </Link>
           <Link className="hover:text-cyan-400 transition-colors" href="not-found">

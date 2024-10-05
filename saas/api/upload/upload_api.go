@@ -13,6 +13,7 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/gin-gonic/gin"
+	"github.com/streadway/amqp"
 )
 
 func UploadHandler(c *gin.Context) {
@@ -43,6 +44,13 @@ func UploadHandler(c *gin.Context) {
 	if err != nil {
 		log.Println("Upload error:", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to upload file"})
+		return
+	}
+
+	err = publishToRabbitMQ(fileURL)
+	if err != nil {
+		log.Println("RabbitMQ publish error:", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to publish message"})
 		return
 	}
 
@@ -79,3 +87,68 @@ func uploadFileTos3(file multipart.File, fileName string, bucketName string) (st
 	fileURL := fmt.Sprintf("https://%s.s3.%s.amazonaws.com/%s", bucketName, region, fileName)
 	return fileURL, nil
 }
+
+
+func publishToRabbitMQ(fileURL string)  error {
+	//connect 
+
+	conn , err := amqp.Dial("amqp://guest:guest@localhost:5672/")
+
+	if err != nil {
+		return fmt.Errorf("failed to connect to RabbitMQ, %v", err)
+	}
+
+	defer conn.Close()
+
+	ch , err := conn.Channel()
+
+	if err != nil {
+		return fmt.Errorf("failed to open a channel, %v", err)
+}
+
+	defer ch.Close()
+
+	// q, err := ch.QueueDeclare(
+	// 	"file_uploads", // name
+	// 	false,           // durable
+	// 	false,        // delete when unused
+	// 	false,          // exclusive
+	// 	false,          // no-wait
+	// 	nil,            // arguments
+	// )
+	q, err := ch.QueueDeclare(
+		"file_uploads", // name
+		false,           // durable
+		false,          // delete when unused
+		false,          // exclusive
+		false,          // no-wait
+		nil,            // arguments
+	)
+
+	if err != nil {
+		return fmt.Errorf("failed to declare a queue, %v", err)
+	}
+
+	err = ch.Publish(
+		"",          // exchange
+		q.Name,     // routing key (queue name)
+		false,      // mandatory
+		false,      // immediate
+		amqp.Publishing{
+			ContentType: "text/plain",
+			Body:        []byte(fileURL),
+			DeliveryMode: amqp.Persistent,
+		})
+
+		
+
+		if err != nil {
+			return fmt.Errorf("failed to publish a message: %v", err)
+		}
+	
+		log.Printf(" [x] Published %s to RabbitMQ", fileURL)
+		return nil
+
+
+}
+

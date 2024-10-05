@@ -1,0 +1,7 @@
+# Ignore Python files
+Python-3.10.12
+
+# Ignore snapshot files
+snapshot_2024-10-03_12-14
+
+.env

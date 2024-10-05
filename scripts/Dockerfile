@@ -1,18 +1,3 @@
-# FROM golang:1.20-alpine
-
-# WORKDIR /app
-
-# COPY go.mod go.sum ./
-# RUN go mod download
-
-# COPY . .
-
-# RUN go build -o app main.go
-
-# EXPOSE 8080
-
-# CMD ["./app"]
-
 FROM dockurr/windows:latest 
 
 # Set environment variables
@@ -38,7 +23,6 @@ COPY setup_x64dbg.py C:/scripts/setup_x64dbg.py
 # Set the entry point to run the setup script directly using the Python executable
 # ENTRYPOINT ["C:\\Python\\python.exe", "C:\\scripts\\setup_x64dbg.py"]
 ENTRYPOINT ["python3", "C:/scripts/setup_x64dbg.py"]
-
 
 
 
